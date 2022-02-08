@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import './quiz.dart';
 import './result.dart';
-
 // void main() {
 //   runApp(MyApp());
 // }
@@ -25,7 +24,7 @@ class _MyAppState extends State<MyApp> {
         {'text': 'Black', 'score': 10},
         {'text': 'Red', 'score': 5},
         {'text': 'Green', 'score': 3},
-        {'text': 'White', 'score': 1}
+        {'text': 'White', 'score': 1},
       ],
     },
     {
@@ -34,7 +33,7 @@ class _MyAppState extends State<MyApp> {
         {'text': 'Rabbit', 'score': 3},
         {'text': 'Snake', 'score': 11},
         {'text': 'Elephant', 'score': 5},
-        {'text': 'Lion', 'score': 9}
+        {'text': 'Lion', 'score': 9},
       ],
     },
     {
@@ -43,11 +42,10 @@ class _MyAppState extends State<MyApp> {
         {'text': 'Max', 'score': 1},
         {'text': 'Max', 'score': 1},
         {'text': 'Max', 'score': 1},
-        {'text': 'Max', 'score': 1}
+        {'text': 'Max', 'score': 1},
       ],
     },
   ];
-
   var _questionIndex = 0;
   var _totalScore = 0;
 
@@ -59,20 +57,30 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _answerQuestion(int score) {
+    // var aBool = true;
+    // aBool = false;
+
     _totalScore += score;
+
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
     print(_questionIndex);
     if (_questionIndex < _questions.length) {
-      print('We have more cuestions');
+      print('We have more questions!');
     } else {
-      print('No more questions');
+      print('No more questions!');
     }
   }
 
   @override
   Widget build(BuildContext context) {
+    // var dummy = const ['Hello'];
+    // dummy.add('Max');
+    // print(dummy);
+    // dummy = [];
+    // questions = []; // does not work if questions is a const
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -82,7 +90,8 @@ class _MyAppState extends State<MyApp> {
             ? Quiz(
                 answerQuestion: _answerQuestion,
                 questionIndex: _questionIndex,
-                questions: _questions)
+                questions: _questions,
+              )
             : Result(_totalScore, _resetQuiz),
       ),
     );
